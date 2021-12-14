@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/services/location.dart';
-import 'package:http/http.dart' as http;
+import 'package:weather_app/services/WeatherModel.dart';
+import 'package:weather_app/ui/location_screen.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -13,41 +14,27 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    getLocation();
+    getLocationData();
   }
 
-  void getLocation() async {
-    Location location = Location();
-    await location.getCurrentLocation();
-    print(location.lat);
-    print(location.long);
-  }
-
-  void getData() async {
-    // var url = Uri.parse('api.openweathermap.org/data/2.5/weather');
-    // var response = await http.post(url, body: {
-    //   'lat': '3',
-    //   'lon': '2',
-    //   'appid': 'f0bbd4dc62d2f71478c056f8b430f928'
-    // });
-    // print('Response status: ${response.statusCode}');
-    // print('Response body: ${response.body}');
-    try {
-      var response = await http.get(
-        Uri.parse(
-            'http://api.openweathermap.org/data/2.5/weather?lat=3&lon=2&appid=f0bbd4dc62d2f71478c056f8b430f928'),
-      );
-      print(response.statusCode);
-    } catch (e) {
-      print(e);
-    }
+  void getLocationData() async {
+    WeatherModel weatherModel = WeatherModel();
+    dynamic data = await weatherModel.getLocationWeather();
+    Navigator.push(context, MaterialPageRoute(builder: (buildContext) {
+      return LocationScreen(data);
+    }));
   }
 
   @override
   Widget build(BuildContext context) {
-    getData();
     return Scaffold(
-      body: Center(child: Text('$yourLocation')),
+      backgroundColor: Colors.black,
+      body: Center(
+        child: SpinKitFadingCircle(
+          color: Colors.white,
+          size: 50.0,
+        ),
+      ),
     );
   }
 }
