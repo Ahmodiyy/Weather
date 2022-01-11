@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kTempTextStyle = TextStyle(
-  fontSize: 100.0,
+  fontSize: 70.0,
 );
 
 const kMessageTextStyle = TextStyle(

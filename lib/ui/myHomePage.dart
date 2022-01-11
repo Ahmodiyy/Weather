@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: SpinKitFadingCircle(
           color: Colors.white,
           size: 50.0,
+          
         ),
       ),
     );

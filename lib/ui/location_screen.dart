@@ -64,7 +64,7 @@ class _LocationScreenState extends State<LocationScreen> {
             children: <Widget>[
               Expanded(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     TextButton(
                       onPressed: () async {
@@ -106,7 +106,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   child: Row(
                     children: <Widget>[
                       Text(
-                        '$temp',
+                        '$temp°',
                         style: kTempTextStyle,
                       ),
                       Text(
